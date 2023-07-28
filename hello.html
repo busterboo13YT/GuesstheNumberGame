@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Guess the Number Game</title>
+</head>
+<body>
+  <script>
+    // Function to generate a random number between min and max (inclusive)
+    function getRandomNumber(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    // Entry point of the game
+    function startGame() {
+      const secretNumber = getRandomNumber(1, 100);
+      let attempts = 0;
+
+      alert("Welcome to the Guess the Number Game!\nTry to guess the secret number between 1 and 100.");
+
+      while (true) {
+        const userInput = prompt("Enter your guess:");
+
+        if (userInput === null) {
+          alert("Game Over. You've quit the game.");
+          break;
+        }
+
+        const guess = parseInt(userInput);
+
+        if (isNaN(guess)) {
+          alert("Please enter a valid number.");
+        } else {
+          attempts++;
+
+          if (guess === secretNumber) {
+            alert(`Congratulations! You've guessed the secret number ${secretNumber} in ${attempts} attempts!`);
+            break;
+          } else if (guess < secretNumber) {
+            alert("Too low! Try again.");
+          } else {
+            alert("Too high! Try again.");
+          }
+        }
+      }
+    }
+
+    // Start the game when the page is loaded
+    window.onload = startGame;
+  </script>
+</body>
+</html>
